@@ -1,0 +1,180 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+
+  <title>Top comments</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+
+
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    
+
+
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/baseCSS.css">
+    <link rel="stylesheet" href="css/pages/index/styles.css">
+  
+    
+    <!--
+    <link href="css/bootstrap/css/custom/bootstrap-scaffolding.min.css" rel="Stylesheet" />
+        -->
+</head>
+
+<body>
+  
+  <div id="main">
+	
+
+
+    <div id='tabSection'>
+
+      <!-- Nav tabs -->
+      <ul id='myTab' class="nav nav-pills">
+        
+        <li><a href="#cnn" data-toggle="tab">CNN</a></li>
+        <li><a href="#ewm" data-toggle="tab">Entertainment Weekly</a></li>
+        
+        <li><a href="#ign-articles" data-toggle="tab">IGN</a></li>
+        
+        <li><a href="#hollywoodreporter" data-toggle="tab">Hollywood Reporter</a></li>
+
+<li><a href="#wrestlinginc" data-toggle="tab">Wrestling Inc.</a></li>
+		<li><a href="#wrestlezone" data-toggle="tab">Wrestling Zone</a></li>
+		
+<li><a href="#usmagazine" data-toggle="tab">US Magazine</a></li>
+
+        <li><a href="#peoplecom" data-toggle="tab">People</a></li>
+<li><a href="#cbsdc" data-toggle="tab">CBS DC</a></li>
+<li><a href="#trekcore" data-toggle="tab">Trek Core</a></li>
+
+
+
+        <li><a href="#theatlanticwire" data-toggle="tab">The Atlantic Wire</a></li>
+
+<li><a href="#the_wrap" data-toggle="tab">The Wrap</a></li>
+
+<li><a href="#ibtimes" data-toggle="tab">IBT (Australia)</a></li>
+<li><a href="#lifesitenews" data-toggle="tab">Life Site News</a></li>
+<li><a href="#bwbeta" data-toggle="tab">Business Week</a></li>
+        <li><a href="#bloomberg" data-toggle="tab">Bloomberg</a></li>        
+        <li><a href="#washtimes" data-toggle="tab">Washington Times</a></li>
+        <li><a href="#telegraphuk" data-toggle="tab">telegraphuk</a></li>
+
+        <li><a href="#comingsoondotnet" data-toggle="tab">comingsoondotnet</a></li>
+
+        
+        <li><a href="#xovain" data-toggle="tab">xovain</a></li>
+
+
+<!--
+        <li><a href="#torontosun" data-toggle="tab">Toronto Sun</a></li>
+
+        <li><a href="#theatlantic" data-toggle="tab">The Atlantic</a></li>
+
+        <li><a href="#thefederalist23" data-toggle="tab">The Federalist</a></li>
+        
+        <li><a href="#wiredepicenter" data-toggle="tab">Wired</a></li>
+          <li><a href="#wireddesign" data-toggle="tab">Wired Design</a></li>
+          
+        <li><a href="#wiredscience" data-toggle="tab">Wired Science</a></li>
+-->
+        
+      </ul>
+
+    </div>
+
+    <div id='divThreads'>
+
+      <div data-bind="foreach: threads">
+
+      <!-- the click event handler is defined so that someone access from an iPad or mobile device will also be able to trigger the event handler (without me bringing in the touchpunch library and trying to do it via jQuery UI -->
+        <div class='threadDiv' data-bind='
+          event: { click: $root.threadMousedOver, 
+                    mouseenter: $root.threadMousedOver },
+          css: { selectedThread: threadID === $root.selectedThread().threadID }'>
+
+          <div class='threadTitleDiv'>
+
+            <label data-bind='
+              attr: { href: link}, 
+              html: title' 
+              target='_blank' ></label>
+
+          </div>
+          
+          
+
+        </div>
+
+      </div>
+
+
+
+    </div>
+
+
+    <img id='imgThreadsLoading' src='images/horizontal-loader.GIF' alt='loader'
+      data-bind='visible: showThreadsLoading' />
+
+
+
+    <div id='threadDetailsDiv' data-bind='with: selectedThread'>
+
+
+      <a data-bind='html: title, attr: { href: link}' target='_blank'></a>
+
+      <div style='height: 10px;'>&nbsp;</div>
+
+      <span data-bind='text: createdAt'></span>
+
+
+      <div id='noTopCommentsDiv' data-bind='visible: $root.threadHasNoTopComments'>
+
+        <br />
+        Sorry, this article doesn't have any top comments yet
+      </div>
+
+      <div class='postsDiv' data-bind="foreach: $data.topPosts">
+
+        <div class='postDiv'>
+
+          <span data-bind="html: message"></span>
+
+          <!-- any images that might be associated with the post -->
+          <div data-bind="foreach: $data.imageUrls">
+
+            <img class='postImage' data-bind='attr: { src: $data }'></img>
+          </div>
+
+
+          By: <span data-bind='text: author'></span>
+
+          - 
+          <span data-bind='text: likes'></span> Likes, 
+          <span data-bind='text: dislikes'></span> Dislikes, 
+
+        </div>
+
+      </div>
+
+
+
+    </div>
+
+
+
+    <img id='imgPostsLoading' src='images/carousel-loader.GIF' alt='loader'
+      data-bind='visible: showPostsLoading' style='display: none;' />
+
+  </div>
+
+
+
+  <script data-main="js/pages/index/script" src="js/lib/requireJS/require.js" ></script>
+
+
+
+</body>
+
+</html>
